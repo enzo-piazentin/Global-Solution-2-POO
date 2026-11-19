@@ -272,14 +272,12 @@ Todo integrante deve saber explicar estes pontos:
 
 ---
 
-## 9. Divisão de tarefas
+## 9. Grupo
 
 **Turma:** 2CCPO
 
-| Integrante (RM) | Responsabilidade |
-|---|---|
-| Bento Donato Garcia — RM561621 | Domínio, exceções e testes do domínio |
-| Enzo Ribeiro Domingues Piazentin — RM564216 | Persistência, serviços e testes do serviço |
-| Guilherme Domingues Califoni — RM565157 | Menu, integração com Spring Boot e documentação |
-
-Todos os integrantes fazem commits no GitHub, com mensagens claras.
+| Integrante (RM) |
+|---|
+| Bento Donato Garcia — RM561621 |
+| Enzo Ribeiro Domingues Piazentin — RM564216 |
+| Guilherme Domingues Califoni — RM565157 |
