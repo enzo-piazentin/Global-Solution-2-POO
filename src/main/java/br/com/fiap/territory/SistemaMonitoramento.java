@@ -36,8 +36,6 @@ public class SistemaMonitoramento implements CommandLineRunner {
     @Autowired
     private ServicoMonitoramento servico;
 
-    // O código de acesso vem do application.properties (territorio.codigo-acesso)
-    // e fica guardado só dentro do DadosTerritorio: nenhuma classe consegue lê-lo depois.
     @Value("${territorio.codigo-acesso}")
     private String codigoAcesso;
 
