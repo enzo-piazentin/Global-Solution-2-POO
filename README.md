@@ -247,28 +247,15 @@ Todo integrante deve saber explicar estes pontos:
 
 ## 8. Uso de IA
 
-**Onde usamos:** usamos IA generativa (Claude, da Anthropic) para analisar o enunciado e montar a checklist de requisitos, sugerir a arquitetura a partir dos exemplos das Aulas 11 a 15, gerar uma primeira versão do código, dos testes e deste README, e aplicar as correções apontadas nas revisões.
+Durante o desenvolvimento do projeto, a Inteligência Artificial foi utilizada para auxiliar na criação de alguns métodos e componentes. Abaixo estão os principais elementos que contaram com suporte de IA:
 
-**Como revisamos:** cada integrante revisou a parte do seu commit, rodou o projeto no IntelliJ conectado ao Oracle da FIAP e conferiu o funcionamento pelo menu: leituras gravadas, alertas, exportação do CSV e o SQL gerado pelo Hibernate no console (com show-sql=true). Quando não entendíamos um trecho, como o synchronized do Singleton, procurávamos o conceito nas aulas antes de manter o código.
-
-- **Guilherme (domínio e exceções):** Revisei as classes de dominio/, rodei o MedicaoTest e o PrevisaoMediaMovelTest e conferi as contas da média móvel na mão. Revi as Aulas 8 e 9 para relembrar a diferença entre a interface Sensor e a classe abstrata SensorBase. Questionei o enum dos níveis de alerta, que não foi visto em aula, e o código repetido nos sensores, o que levou à criação da SensorBase.
-- **Fernando (persistência e serviços):** Rodei o script-oracle.sql no Oracle da FIAP, configurei o application.properties com meu RM e confirmei que os alertas não se repetiam. Estudei como o Spring gera o SQL a partir do nome do método e para que serve o synchronized, que encontrei na Aula 15. Troquei o banco de H2 para o Oracle e questionei a justificativa do Singleton.
-- **Raphael (menu e README):** Rodei o sistema no IntelliJ, passei pelas cinco opções do menu e testei entradas erradas para confirmar que o programa não fecha. Estudei como o CommandLineRunner inicia o menu depois que o Spring sobe. Pedi a troca das concatenações por String.format e printf e reescrevi o “Como revisamos”.
-
-**Ajustes finais com IA (após a revisão):** pedimos uma revisão comparando o projeto com o enunciado. A partir dela: as credenciais saíram do `application.properties` para o `credenciais.properties` (fora do Git); o script SQL foi movido para `banco/` com instruções e consultas de conferência; o código de acesso deixou de ter getter público; e desligamos o banner e os logs do Spring no console.
-
-**O que mudamos ou recusamos da IA:**
-1. **Banco de dados:** a IA propôs H2 em arquivo. Trocamos para o **Oracle da FIAP**, com a configuração da Aula 13, o driver ojdbc11, ddl-auto=none e um script SQL próprio para criar as tabelas.
-2. **Material das aulas como critério:** exigimos que o código usasse só o que foi visto em aula e, no resto, a forma mais básica (for, while, String.format, System.out.printf). Por isso trocamos o enum dos níveis de alerta por constantes String, como as categorias do Produto, e removemos um método static dentro de interface.
-3. **Tecnologia:** testamos uma versão com JDBC puro e DAOs (Aula 12), mas voltamos para **Spring Boot + JPA** (Aulas 13 a 15), mantendo as pastas da estrutura sugerida no enunciado.
-4. **Escopo:** recusamos classes extras que a IA tinha criado e que não eram pedidas, como um Builder de relatório e interfaces auxiliares. Ficaram só as que resolvem requisitos ou problemas reais.
-5. **Justificativa do Singleton:** a IA justificou o getInstancia() dizendo que a fábrica e o menu não eram beans do Spring, o que estava errado. Corrigimos o README com o motivo verdadeiro: a estrutura pede o Singleton clássico da Aula 14.
-6. **Problemas que encontramos na revisão e pedimos para corrigir:**
-   - alertas duplicados quando a previsão rodava várias vezes;
-   - alertas gerados a partir de leituras antigas;
-   - status do ponto definido por sorteio;
-   - código repetido nos três sensores (resolvido com a classe abstrata SensorBase);
-   - método alterarLimiares com 6 parâmetros (passou a receber um objeto Limiar).
+| Componente | Método/Classe | Descrição |
+|---|---|---|
+| **README.md** | Documentação completa | Estrutura e conteúdo do README foram gerados com IA, incluindo documentação de arquitetura, guias de execução e reflexão crítica |
+| **ServicoMonitoramento** | `exportarHistoricoCsv()` | Método de exportação CSV com formatação específica para Excel em português (vírgula decimal, separador ponto e vírgula, BOM UTF-8) |
+| **PrevisaoComparacao** | `prever()` | Implementação da estratégia de comparação com período anterior, calculando tendência de piora ou melhora |
+| **FabricaPrevisao** | `criarEstrategiasConfiguradas()` | Método que cria lista de estratégias ativas baseado na configuração do sistema |
+| **ConfiguracaoSistema** | `restaurarLimiaresPadrao()` | Método que restaura os limiares padrão para todos os tipos de sensores, útil para testes |
 
 ---
 
