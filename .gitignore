@@ -1,0 +1,12 @@
+target/
+bin/
+exportacoes/
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+
+# Credenciais do Oracle (cada pessoa cria o seu a partir do credenciais.exemplo.properties)
+credenciais.properties
+
